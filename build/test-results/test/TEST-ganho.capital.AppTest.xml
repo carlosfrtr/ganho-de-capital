@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ganho.capital.AppTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2022-07-23T23:49:13" hostname="MacBook-Pro-de-Carlos.local" time="0.243">
+  <properties/>
+  <testcase name="deveCalcularTaxasComUmaOperacaoDeCompraEDuasDeVenda" classname="ganho.capital.AppTest" time="0.231"/>
+  <testcase name="deveCalcularTaxasComDuasOperacoesDeCompraEUmaDeVenda" classname="ganho.capital.AppTest" time="0.003"/>
+  <testcase name="deveCalcularDuasLinhasDeOperacaoSeparadas" classname="ganho.capital.AppTest" time="0.001"/>
+  <testcase name="deveCalcularTaxasComUmaOperacaoDeCompraEQuatroDeVenda" classname="ganho.capital.AppTest" time="0.002"/>
+  <testcase name="deveCalcularTaxasComOperacoesIntercaladasDeCompraEVenda" classname="ganho.capital.AppTest" time="0.002"/>
+  <testcase name="deveCalcularTaxasComDuasOperacoesDeCompraEDuasDeVenda" classname="ganho.capital.AppTest" time="0.001"/>
+  <testcase name="deveCalcularTaxasComQuatroOperacoesIntercaladasDeCompraEVenda" classname="ganho.capital.AppTest" time="0.001"/>
+  <testcase name="deveCalcularTaxasComUmaOperacaoDeCompraEDuasDeVendaComTaxaDeMil" classname="ganho.capital.AppTest" time="0.001"/>
+  <testcase name="deveCalcularTaxasComUmaOperacaoDeCompraEDuasDeVendaComPagamentoDeTaxas" classname="ganho.capital.AppTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
