@@ -3,20 +3,20 @@
 </p>
 
 <p align="center">
-  <a href="#overview">Overview</a> •
-  <a href="#roles">Roles</a> •
-  <a href="#example">Example</a> •
-  <a href="#installing">Install</a> •
-  <a href="#running">Run</a> •
+  <a href="#descrição">Descrição</a> •
+  <a href="#regras">Regras</a> •
+  <a href="#exemplo">Exemplo</a> •
+  <a href="#instalação">Instalação</a> •
+  <a href="#executando">Executando</a> •
 </p>
 
 ---
 
-# Overview
+# Descrição
 
 O programa recebe listas, uma por linha, de operações do mercado financeiro de ações em formato
 json através da entrada padrão ( stdin ). Cada operação desta lista contém os seguintes campos:
-
+```
 ┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃    Nome    ┃ Significado                                                      ┃
 ┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
@@ -24,7 +24,7 @@ json através da entrada padrão ( stdin ). Cada operação desta lista contém 
 ┃ unit-cost  ┃ Preço unitário da ação em uma moeda com duas casas decimais      ┃
 ┃ quantity   ┃ Quantidade de ações negociadas                                   ┃
 ┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-
+```
 Este é um exemplo da entrada:
 ```JSON
 [{"operation":"buy", "unit-cost":10.00, "quantity": 10000},
@@ -42,13 +42,13 @@ A última linha da entrada será uma linha vazia.
 Para cada linha da entrada, o programa deve retornar uma lista contendo o imposto pago para cada
 operação recebida. Os elementos desta lista devem estar codificados em formato json e a saída deve ser
 retornada através da saída padrão ( stdout ). O retorno é composto pelo seguinte campo:
-
+```
 ┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃    Nome    ┃ Significado                              ┃
 ┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
 ┃ tax        ┃ O valor do imposto pago em uma operação  ┃
 ┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-
+```
 Este é um exemplo da saída:
 ```JSON
 [{"tax":0.00}, {"tax":10000.00}]
@@ -59,7 +59,7 @@ A lista retornada pelo programa deve ter o mesmo tamanho da lista de operações
 Por exemplo, se foram processadas três operações (buy, buy, sell), o retorno do programa deve ser uma lista
 com três valores que representam o imposto pago em cada operação.
 
-# Roles
+# Regras
 
 O programa deve lidar com dois tipos de operações ( buy e sell ) e ele deve seguir as seguintes regras:
 - O percentual de imposto pago é de 20% sobre o lucro obtido na operação. Ou seja, o imposto vai ser pago quando há uma operação de venda cujo preço é superior ao preço médio ponderado de compra.
@@ -71,7 +71,7 @@ O programa deve lidar com dois tipos de operações ( buy e sell ) e ele deve se
 
 Você pode assumir que nenhuma operação vai vender mais ações do que você tem naquele momento.
 
-# Example
+# Exemplo
 
 Quando a aplicação recebe duas linhas, elas devem ser lidadas como duas simulações independentes. O
 programa não deve carregar o estado obtido do processamento da primeira entrada para as outras
@@ -83,15 +83,13 @@ Input:
 [{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, {"operation":"sell", "unit-cost":20.00, "quantity": 5000}, {"operation":"sell", "unit-cost":5.00, "quantity": 5000}]
 
 ```
-```JSON
 Output:
-[{"tax": 0.00},{"tax": 0.00},{"tax": 0.00}]
-[{"tax": 0.00},{"tax": 10000.00},{"tax": 0.00}]
+```JSON
+[{"tax": 0.00}, {"tax": 0.00},{"tax": 0.00}]
+[{"tax": 0.00}, {"tax": 10000.00},{"tax": 0.00}]
 ```
 
-## Requisitos para executar projeto
-
-# installing
+# Instalação
 
 * Necessário JDK 8 ou superior instalado.
 
@@ -99,19 +97,16 @@ Gerar o arquivo .jar da aplicação:
 ```SHELL
 ./gradlew build
 ```
-# running
+# Executando
 
-Para executar basta colocar no terminal:
+- Para executar basta colocar no terminal:
 ```SHELL
 java -jar ganho-capital.jar
 ```
 
 A aplicação vai aguardar o input das informações e vai devolver o resultado quando receber uma linha vazia.
 
-# running2
-
-Outra forma de executar informando uma arquivo via Input Redirection.:
-
+- Outra forma de executar informando uma arquivo via Input Redirection.:
 '''SHELL
 java -jar ganho-capital.jar < input.txt
 '''
