@@ -17,8 +17,11 @@ ganho-de-capital 0.1.0
   <a href="#descrição">Descrição</a> •
   <a href="#regras">Regras</a> •
   <a href="#exemplo">Exemplo</a> •
+  <a href="#arquitetura">Arquitetura</a> •
+  <a href="#bibliotecas">Bibliotecas</a> •
   <a href="#instalação">Instalação</a> •
-  <a href="#executando">Executando</a>
+  <a href="#executando">Executando</a> •
+  <a href="#considerações">Considerações</a>
 </p>
 
 ---
@@ -99,6 +102,25 @@ Output:
 [{"tax": 0.00}, {"tax": 10000.00},{"tax": 0.00}]
 ```
 
+# Arquitetura
+
+Para esse projeto utilizei um padrão de projeto comportamental permitindo que eu passe as operações por uma corrente de handlers. Ao receber uma operação, cada handler decide se processa o pedido ou o passa adiante para o próximo handler na corrente.
+
+OperacaoDeCompra.java
+OperacaoDeVenda.java
+OperacaoDeVendaAcimaDoLimiteDe20000.java
+
+Essas classes representam uma operação financeira com uma determinada regra para calcular o imposto.
+
+Essa estratégia tem a vantagem de facilidade de manutenção e evolução do código.
+
+# Bibliotecas
+
+- Para carregar a entrada das informações utilizei o java.util.Scanner.
+- Para converter Json para Objeto utilizei o jackson.
+- Para os Testes Junit4.
+- Para build e gerenciar dependencias gradle.
+
 # Instalação
 
 * Necessário Docker instalado.
@@ -107,6 +129,7 @@ Gerar imagem da aplicação:
 ```SHELL
 docker build -t ganho-capital .
 ```
+
 # Executando
 
 - Executando no terminal:
@@ -127,3 +150,11 @@ docker run -i --rm ganho-capital bash -c 'java -jar ./app.jar' <<EOF
 
 EOF
 ```
+
+# Considerações
+
+- Acredito que dava para melhorar os testes.
+- Não avaliei a performace com um volume de dados maior.
+- Gostaria de entregar em uma paradigma funcional, mas ainda não tenho domínio.
+- Estou totalmente aberto a sugestões de melhorias ou subistituição/utilização de padrões.
+- Agradeço por poder participar desse processo!
