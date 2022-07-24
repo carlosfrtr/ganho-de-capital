@@ -1,3 +1,14 @@
+```
+ _____                _                  _         _____                _  _           _ 
+|  __ \              | |                | |       /  __ \              (_)| |         | |
+| |  \/  __ _  _ __  | |__    ___     __| |  ___  | /  \/  __ _  _ __   _ | |_   __ _ | |
+| | __  / _` || '_ \ | '_ \  / _ \   / _` | / _ \ | |     / _` || '_ \ | || __| / _` || |
+| |_\ \| (_| || | | || | | || (_) | | (_| ||  __/ | \__/\| (_| || |_) || || |_ | (_| || |
+ \____/ \__,_||_| |_||_| |_| \___/   \__,_| \___|  \____/ \__,_|| .__/ |_| \__| \__,_||_|
+                                                                | |                      
+                                                                |_|                      
+ganho-de-capital 0.1.0
+```
 <p align="center">
   <i>Code Challenge: Ganho de Capital</i> programa de linha de comando (CLI) que calcula o imposto a ser pago sobre lucros ou prejuízos de operações no mercado financeiro de ações.
 </p>
@@ -91,24 +102,30 @@ Output:
 
 # Instalação
 
-* Necessário JDK 8 ou superior instalado.
+* Necessário Docker instalado.
 
-Gerar o arquivo .jar da aplicação:
+Gerar imagem da aplicação:
 ```SHELL
-./gradlew build
+docker build -t ganho-capital .
 ```
 # Executando
 
-- Para executar basta colocar no terminal:
+- Executando no terminal:
 ```SHELL
-java -jar ganho-capital.jar
+docker run -it --rm ganho-capital sh -c "java -jar ./app.jar"
 ```
-
 A aplicação vai aguardar o input das informações e vai devolver o resultado quando receber uma linha vazia.
 
-- Outra forma de executar informando uma arquivo via Input Redirection.:
-'''SHELL
-java -jar ganho-capital.jar < input.txt
-'''
+- Executando via Input Redirection:
+```SHELL
+docker run -i --rm ganho-capital sh -c 'java -jar ./app.jar' < input.txt
+```
+Ou
+```SHELL
+docker run -i --rm ganho-capital bash -c 'java -jar ./app.jar' <<EOF
+[{"operation":"buy", "unit-cost":10.00, "quantity": 100}, {"operation":"sell", "unit-cost":15.00, "quantity": 50}, {"operation":"sell", "unit-cost":15.00, "quantity": 50}]
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, {"operation":"sell", "unit-cost":20.00, "quantity": 5000}, {"operation":"sell", "unit-cost":5.00, "quantity": 5000}]
 
-Onde o arquivo input.txt contém as informações da entrada. 
+EOF
+```
+O arquivo input.txt contém as informações da entrada.
