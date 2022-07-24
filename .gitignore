@@ -2,4 +2,8 @@
 .gradle
 .vscode
 build
+.settings
+.classpath
+.project
+bin
 input.txt

@@ -1,11 +1,7 @@
 package ganho.capital;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ganho.capital.model.Operacao;
 import ganho.capital.model.PosicaoEmAberto;
@@ -13,9 +9,10 @@ import ganho.capital.operacoes.OperacaoDeCompra;
 import ganho.capital.operacoes.OperacaoDeVenda;
 import ganho.capital.operacoes.OperacaoDeVendaAcimaDoLimiteDe20000;
 import ganho.capital.operacoes.OperacaoFinanceira;
+import ganho.capital.utils.ImpostoMapper;
+import ganho.capital.utils.OperacaoMapper;
 
 public class App {
-	static final ObjectMapper MAPPER = new ObjectMapper();
 
 	public static void main(String[] args) {
 
@@ -27,7 +24,7 @@ public class App {
 				if (nextLine.isBlank())
 					break;
 
-				final List<Operacao> operacoes = Arrays.asList(MAPPER.readValue(nextLine, Operacao[].class));
+				final List<Operacao> operacoes = OperacaoMapper.obterOperacoesFromJson(nextLine);
 
 				final PosicaoEmAberto posicaoEmAberto = new PosicaoEmAberto();
 
@@ -37,9 +34,9 @@ public class App {
 							new OperacaoDeVenda(posicaoEmAberto, operacao));
 				}
 
-				System.out.println(MAPPER.writeValueAsString(posicaoEmAberto.getImpostos()));
+				System.out.println(ImpostoMapper.toJson(posicaoEmAberto.getImpostos()));
 			}
-		} catch (JsonProcessingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			scanner.close();
