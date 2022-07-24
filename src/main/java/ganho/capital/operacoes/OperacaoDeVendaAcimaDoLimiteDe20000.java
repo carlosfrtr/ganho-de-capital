@@ -2,9 +2,9 @@ package ganho.capital.operacoes;
 
 import java.math.BigDecimal;
 
-import ganho.capital.dto.Imposto;
-import ganho.capital.dto.Operacao;
-import ganho.capital.dto.PosicaoEmAberto;
+import ganho.capital.model.Imposto;
+import ganho.capital.model.Operacao;
+import ganho.capital.model.PosicaoEmAberto;
 
 public class OperacaoDeVendaAcimaDoLimiteDe20000 extends OperacaoDeVenda {
 
@@ -16,7 +16,7 @@ public class OperacaoDeVendaAcimaDoLimiteDe20000 extends OperacaoDeVenda {
 
 	@Override
 	public void calcularImposto() {
-		this.posicaoEmAberto.adicionarImposto(new Imposto(lucro.multiply(BigDecimal.valueOf(0.2))));
+		this.posicaoEmAberto.adicionarImposto(new Imposto(this.lucro.multiply(BigDecimal.valueOf(0.2))));
 	}
 
 	@Override

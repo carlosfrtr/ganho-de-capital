@@ -1,4 +1,4 @@
-package ganho.capital.dto;
+package ganho.capital.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -2,9 +2,9 @@ package ganho.capital.operacoes;
 
 import java.util.stream.Stream;
 
-import ganho.capital.dto.Imposto;
-import ganho.capital.dto.Operacao;
-import ganho.capital.dto.PosicaoEmAberto;
+import ganho.capital.model.Imposto;
+import ganho.capital.model.Operacao;
+import ganho.capital.model.PosicaoEmAberto;
 
 public abstract class OperacaoFinanceira {
 	

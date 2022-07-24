@@ -7,8 +7,8 @@ import java.util.Scanner;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ganho.capital.dto.Operacao;
-import ganho.capital.dto.PosicaoEmAberto;
+import ganho.capital.model.Operacao;
+import ganho.capital.model.PosicaoEmAberto;
 import ganho.capital.operacoes.OperacaoDeCompra;
 import ganho.capital.operacoes.OperacaoDeVenda;
 import ganho.capital.operacoes.OperacaoDeVendaAcimaDoLimiteDe20000;
@@ -19,32 +19,31 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Scanner scanner = new Scanner(System.in);
+		final Scanner scanner = new Scanner(System.in);
 
-		while (scanner.hasNextLine()) {
-			String nextLine = scanner.nextLine();
-			if (nextLine.isBlank())
-				break;
+		try {
+			while (scanner.hasNextLine()) {
+				final String nextLine = scanner.nextLine();
+				if (nextLine.isBlank())
+					break;
 
-			try {
-				List<Operacao> operacoes = Arrays.asList(MAPPER.readValue(nextLine, Operacao[].class));
+				final List<Operacao> operacoes = Arrays.asList(MAPPER.readValue(nextLine, Operacao[].class));
 
 				final PosicaoEmAberto posicaoEmAberto = new PosicaoEmAberto();
 
 				for (Operacao operacao : operacoes) {
 					OperacaoFinanceira.processar(new OperacaoDeCompra(posicaoEmAberto, operacao),
 							new OperacaoDeVendaAcimaDoLimiteDe20000(posicaoEmAberto, operacao),
-							new OperacaoDeVenda(posicaoEmAberto, operacao)
-							);
+							new OperacaoDeVenda(posicaoEmAberto, operacao));
 				}
 
 				System.out.println(MAPPER.writeValueAsString(posicaoEmAberto.getImpostos()));
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
 			}
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} finally {
+			scanner.close();
 		}
-
-		scanner.close();
 
 	}
 }

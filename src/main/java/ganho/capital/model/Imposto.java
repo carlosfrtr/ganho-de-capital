@@ -1,4 +1,4 @@
-package ganho.capital.dto;
+package ganho.capital.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

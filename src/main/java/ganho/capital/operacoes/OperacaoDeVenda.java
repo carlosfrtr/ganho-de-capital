@@ -3,9 +3,8 @@ package ganho.capital.operacoes;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import ganho.capital.dto.Operacao;
-import ganho.capital.dto.PosicaoEmAberto;
-import ganho.capital.dto.TipoDeOperacaoEnum;
+import ganho.capital.model.Operacao;
+import ganho.capital.model.PosicaoEmAberto;
 
 public class OperacaoDeVenda extends OperacaoFinanceira {
 
@@ -19,23 +18,23 @@ public class OperacaoDeVenda extends OperacaoFinanceira {
 	public void calcular() {
 		this.posicaoEmAberto.computarQuantidadeDeAcoesAtual(-this.operacao.getQuantidade());
 
-		lucro = operacao.getCustoUnitario().subtract(posicaoEmAberto.getPrecoMedio())
-				.multiply(BigDecimal.valueOf(operacao.getQuantidade())).setScale(2, RoundingMode.HALF_UP);
+		this.lucro = this.operacao.getCustoUnitario().subtract(this.posicaoEmAberto.getPrecoMedio())
+				.multiply(BigDecimal.valueOf(this.operacao.getQuantidade())).setScale(2, RoundingMode.HALF_UP);
 
-		BigDecimal prejuizo = lucro.add(posicaoEmAberto.getPrejuizo()).compareTo(BigDecimal.ZERO) < 0
-				? posicaoEmAberto.getPrejuizo().add(lucro)
+		final BigDecimal prejuizo = this.lucro.add(this.posicaoEmAberto.getPrejuizo()).compareTo(BigDecimal.ZERO) < 0
+				? this.posicaoEmAberto.getPrejuizo().add(this.lucro)
 				: BigDecimal.ZERO;
-		lucro = lucro.add(posicaoEmAberto.getPrejuizo()).compareTo(BigDecimal.ZERO) > 0
-				? lucro.add(posicaoEmAberto.getPrejuizo())
+		this.lucro = this.lucro.add(this.posicaoEmAberto.getPrejuizo()).compareTo(BigDecimal.ZERO) > 0
+				? this.lucro.add(this.posicaoEmAberto.getPrejuizo())
 				: BigDecimal.ZERO;
 
 		this.posicaoEmAberto.setPrejuizo(prejuizo);
 		this.calcularImposto();
 	}
-	
+
 	@Override
 	public boolean podeCalcular() {
-		return this.operacao.getTipo().equals(TipoDeOperacaoEnum.VENDA);
+		return this.operacao.isVenda();
 	}
 
 }

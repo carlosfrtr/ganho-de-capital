@@ -1,4 +1,4 @@
-package ganho.capital.dto;
+package ganho.capital.model;
 
 import java.math.BigDecimal;
 
@@ -16,7 +16,6 @@ public class Operacao {
 	private Integer quantidade;
 	
 	public Operacao() {
-		
 	}
 
 	public Operacao(TipoDeOperacaoEnum tipo, BigDecimal custoUnitario, Integer quantidade) {
@@ -25,34 +24,23 @@ public class Operacao {
 		this.quantidade = quantidade;
 	}
 
-	public TipoDeOperacaoEnum getTipo() {
-		return tipo;
+	public BigDecimal getValor() {
+		return this.custoUnitario
+				.multiply(BigDecimal.valueOf(this.quantidade));
 	}
 
-	public void setTipo(TipoDeOperacaoEnum tipo) {
-		this.tipo = tipo;
+	public Boolean isCompra() {
+		return tipo.equals(TipoDeOperacaoEnum.COMPRA);
+	}
+	public Boolean isVenda() {
+		return tipo.equals(TipoDeOperacaoEnum.VENDA);
 	}
 
 	public BigDecimal getCustoUnitario() {
 		return custoUnitario;
 	}
 
-	public void setCustoUnitario(BigDecimal custoUnitario) {
-		this.custoUnitario = custoUnitario;
-	}
-
 	public Integer getQuantidade() {
 		return quantidade;
 	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-	
-	public BigDecimal getValor() {
-		return this.custoUnitario
-		.multiply(BigDecimal.valueOf(this.quantidade));
-	}
-	
-
 }
