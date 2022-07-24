@@ -18,7 +18,7 @@ ganho-de-capital 0.1.0
   <a href="#regras">Regras</a> •
   <a href="#exemplo">Exemplo</a> •
   <a href="#instalação">Instalação</a> •
-  <a href="#executando">Executando</a> •
+  <a href="#executando">Executando</a>
 </p>
 
 ---
@@ -38,10 +38,9 @@ json através da entrada padrão ( stdin ). Cada operação desta lista contém 
 ```
 Este é um exemplo da entrada:
 ```JSON
-[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},
-{"operation":"sell", "unit-cost":20.00, "quantity": 5000}]
-[{"operation":"buy", "unit-cost":20.00, "quantity": 10000},
-{"operation":"sell", "unit-cost":10.00, "quantity": 5000}]
+[{"operation":"buy", "unit-cost":10.00, "quantity": 10000}, {"operation":"sell", "unit-cost":20.00, "quantity": 5000}]
+[{"operation":"buy", "unit-cost":20.00, "quantity": 10000}, {"operation":"sell", "unit-cost":10.00, "quantity": 5000}]
+
 ```
 
 As operações estarão na ordem em que elas ocorreram, ou seja, a segunda operação na lista aconteceu
@@ -128,4 +127,3 @@ docker run -i --rm ganho-capital bash -c 'java -jar ./app.jar' <<EOF
 
 EOF
 ```
-O arquivo input.txt contém as informações da entrada.
