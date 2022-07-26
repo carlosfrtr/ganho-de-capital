@@ -154,7 +154,7 @@ EOF
 # Considerações
 
 - Acredito que dava para melhorar os testes.
-- Não avaliei a performace com um volume de dados maior.
+- Não avaliei a desempenho com um volume de dados maior.
 - Gostaria de entregar em uma paradigma funcional, mas ainda não tenho domínio.
-- Estou totalmente aberto a sugestões de melhorias ou subistituição/utilização de padrões.
+- Estou totalmente aberto a sugestões de melhorias ou substituição/utilização de padrões.
 - Agradeço por poder participar desse processo!
